@@ -50,6 +50,12 @@ describe('Generator.js', ()  => {
         ]);
     });
 
+    it('generates a partial sum sequence', () => {
+        const partialSumSequence = Generator.partialSumSeq([1, 3, 7, 2, 0]);
+        console.log(partialSumSequence);
+        expect(partialSumSequence).toEqual([ 1, 4, 11, 13, 13]);
+    });
+
 
 
 });
