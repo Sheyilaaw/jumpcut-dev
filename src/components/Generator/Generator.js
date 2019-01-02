@@ -98,10 +98,6 @@ const Generator = {
         let params = Array.from(arguments);
         params.shift();
         this.values = callback.apply(null, params);
-        // return {
-        //     values: this.values,
-        //     pipeline: this.pipeline,
-        // };
         return this;
     },
 
@@ -111,10 +107,6 @@ const Generator = {
             newValues.push(pipe(this.values[i]));
         }
         this.values = newValues;
-        // return {
-        //     values: this.values,
-        //     pipeline: this.pipeline,
-        // };
         return this;
     },
 
@@ -150,7 +142,7 @@ const Generator = {
                     return values[this.index++];
                 } else {
                     // When you are out of values
-                    return "error";
+                    throw new Error("Out of values");
                 }
             }
         }
