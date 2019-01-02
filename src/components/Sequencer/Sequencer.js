@@ -11,9 +11,11 @@ class Sequencer extends Component {
             sequenceFac: null,
             fibonacciFac:null,
             rangeFac:null,
+            primeFac:null,
             factorial: [],
             fibonacci: [],
-            range: []
+            range: [],
+            prime: [],
         };
 
     }
@@ -85,6 +87,21 @@ class Sequencer extends Component {
                     }
                 }
                 break;
+            case 'prime':
+                if(this.state.primeFac == null){
+                    const prime = Generator.primeSeq;
+                    const sequence = Generator.generator(prime);
+                    this.setState({
+                        primeFac: sequence,
+                        prime: [...this.state.prime, sequence.next()]
+                    });
+                } else{
+                    const nextSequenceVal = this.state.primeFac.next();
+                    this.setState({
+                        prime: [...this.state.prime, nextSequenceVal]
+                    });
+                }
+                break;
             default:
                 break;
         }
@@ -136,6 +153,13 @@ class Sequencer extends Component {
 
                 <div className="col-md-2" id="prime" onClick={this.handleClick}>
                     <button id="prime" onClick={ this.handleClick } > Prime </button>
+                    <ul className="prime-list">
+                        {
+                            this.state.prime.map(function(value) {
+                                return <li key={value}>{value}</li>
+                            })
+                        }
+                    </ul>
                 </div>
 
                 <div className="col-md-2" id="partial" onClick={this.handleClick}>
