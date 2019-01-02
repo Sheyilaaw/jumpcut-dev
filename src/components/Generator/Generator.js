@@ -73,6 +73,55 @@ const Generator = {
         return response;
     },
 
+    partialSumSeq: function (list) {
+        let response = [];
+        const sequenceLength = list.length;
+        response.push(list[0]);
+        for (let i = 1; i < sequenceLength; i++) {
+            const val = list[i]+list[i-1];
+            response.push(val);
+            list[i] = val;
+        }
+        return response;
+    },
+
+    accumulator: function(){
+        let sum = 0;
+        return function (value) {
+            sum += value;
+            return sum;
+        };
+    },
+
+    pipeSeq: function (sequence) {
+        let callback = arguments[0];
+        let params = Array.from(arguments);
+        params.shift();
+        this.values = callback.apply(null, params);
+        // return {
+        //     values: this.values,
+        //     pipeline: this.pipeline,
+        // };
+        return this;
+    },
+
+    pipeline: function (pipe) {
+        let newValues =  [];
+        for (let i in this.values) {
+            newValues.push(pipe(this.values[i]));
+        }
+        this.values = newValues;
+        // return {
+        //     values: this.values,
+        //     pipeline: this.pipeline,
+        // };
+        return this;
+    },
+
+    invoke : function () {
+        return this;
+    },
+
     generator: function(sequencer){
         let values ;
         let valuesLength;
