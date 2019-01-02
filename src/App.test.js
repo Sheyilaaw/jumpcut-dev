@@ -1,12 +1,12 @@
 import React from 'react';
-import App from './App';
 import { shallow, configure } from  'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
+import Sequencer from "./components/Sequencer/Sequencer";
 configure({adapter: new Adapter()});
 
 describe('<App />', () =>{
-  test('Rendering a simple component',() => {
-      const wrapper = shallow(<App />);
-      expect(wrapper).toMatchSnapshot();
-  });
+    it('renders 1 <Sequencer /> component', () => {
+        const component = shallow(<Sequencer />);
+        expect(component).toHaveLength(1);
+    });
 });
