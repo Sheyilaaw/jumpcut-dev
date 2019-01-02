@@ -45,6 +45,15 @@ const Generator = {
         return response;
     },
 
+    rangeSeq: function (start, step) {
+        let response = [];
+        const limit = Generator.SEQUENCE_LIMIT;
+        for (let i = start; i <= step*limit; i+=step) {
+            response.push(i);
+        }
+        return response;
+    },
+
     generator: function(sequencer){
         let values ;
         let valuesLength;
