@@ -23,6 +23,28 @@ const Generator = {
         return response;
     },
 
+    fibonacci: function(number){
+        //Fibonacci(n) = (1  —  Sqrt(5) ) / 2
+
+        const sqRootOf5 = Math.sqrt(5);
+
+        const Phi = (1+sqRootOf5)/2;
+        const phi = (1-sqRootOf5)/2;
+
+        return Math.round((Math.pow(Phi, number) - Math.pow(phi, number)) / sqRootOf5);
+    },
+
+    fibonacciSeq: function () {
+        let response  = [];
+
+        const limit = Generator.SEQUENCE_LIMIT;
+
+        for (let i = 0 ; i<limit ; i++){
+            response.push(Generator.fibonacci(i));
+        }
+        return response;
+    },
+
     generator: function(sequencer){
         let values ;
         let valuesLength;
