@@ -26,6 +26,13 @@ describe('<Seqeuncer />', () => {
         expect(liItem).toHaveLength(1);
     });
 
-
+    it('can show fibonacci sequence when the button is clicked', () => {
+        const wrapper = shallow(<Sequencer />);
+        const factorialButton = wrapper.find('button#fibonacci');
+        factorialButton.simulate('click', { target: { id: 'fibonacci' } });
+        wrapper.update();
+        const liItem = wrapper.find('ul.fibonacci-list>li');
+        expect(liItem).toHaveLength(1);
+    });
 
 });
