@@ -52,8 +52,17 @@ describe('Generator.js', ()  => {
 
     it('generates a partial sum sequence', () => {
         const partialSumSequence = Generator.partialSumSeq([1, 3, 7, 2, 0]);
-        console.log(partialSumSequence);
         expect(partialSumSequence).toEqual([ 1, 4, 11, 13, 13]);
+    });
+
+    it('generates a piped sequence', () => {
+        const ac = Generator.accumulator();
+        const pipedSeq = Generator.pipeSeq(Generator.rangeSeq,2,3).pipeline(ac).invoke();
+        const sequence = Generator.generator(pipedSeq);
+        sequence.next();
+        sequence.next();
+        const pipedValue = sequence.next();
+        expect(pipedValue).toEqual(15);
     });
 
 
