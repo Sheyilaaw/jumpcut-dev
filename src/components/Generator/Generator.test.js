@@ -29,4 +29,14 @@ describe('Generator.js', ()  => {
         ]);
     });
 
+    it('generates a range sequence', () => {
+        const rangeSequence = Generator.rangeSeq(1,5);
+        expect(rangeSequence).toEqual([
+            1, 6, 11, 16, 21, 26, 31, 36,
+            41, 46, 51, 56, 61, 66, 71
+        ]);
+    });
+
+
+
 });
