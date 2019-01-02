@@ -37,6 +37,19 @@ describe('Generator.js', ()  => {
         ]);
     });
 
+    it('checks if it is a prime number', () => {
+        const isPrimeNumber = Generator.isPrime(11);
+        expect(isPrimeNumber).toEqual(true);
+    });
+
+    it('generates a sequence of prime numbers', () => {
+        const primeSequence = Generator.primeSeq();
+        expect(primeSequence).toEqual([
+            0, 1, 2, 3, 5, 7, 11, 13, 17,
+            19, 23, 29, 31, 37, 41, 43
+        ]);
+    });
+
 
 
 });

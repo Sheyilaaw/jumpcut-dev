@@ -54,6 +54,28 @@ const Generator = {
         return response;
     },
 
+    isPrime: function(num) {
+        for ( let i = 2; i < num; i++ ) {
+            if ( num % i === 0 ) {
+                return false;
+            }
+        }
+        return true;
+    },
+
+    primeSeq: function(){
+        let response  = [];
+
+        const limit = Generator.SEQUENCE_LIMIT;
+
+        for (let i = 0 ; i<limit*3 ; i++){
+            if(Generator.isPrime(i)){
+                response.push(i);
+            }
+        }
+        return response;
+    },
+
     generator: function(sequencer){
         let values ;
         let valuesLength;
