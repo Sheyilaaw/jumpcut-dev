@@ -85,6 +85,14 @@ const Generator = {
         return response;
     },
 
+    isEven: function () {
+        return function (number) {
+            return (number % 2 === 0)
+                ? { status: true, number:number }
+                : { status: false, number:number };
+        };
+    },
+
     accumulator: function(){
         let sum = 0;
         return function (value) {
