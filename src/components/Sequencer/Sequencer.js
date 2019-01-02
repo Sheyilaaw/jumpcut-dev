@@ -7,7 +7,9 @@ class Sequencer extends Component {
         super(props);
         this.state = {
             sequenceFac: null,
-            factorial: []
+            fibonacciFac:null,
+            factorial: [],
+            fibonacci: [],
         };
 
     }
@@ -23,12 +25,29 @@ class Sequencer extends Component {
                         sequenceFac: sequence,
                         factorial: [...this.state.factorial, sequence.next()]
                     });
-                }else{
+                } else{
                     const nextSequenceVal = this.state.sequenceFac.next();
                     this.setState({
                         factorial: [...this.state.factorial, nextSequenceVal]
                     });
                 }
+                break;
+            case 'fibonacci':
+                if(this.state.fibonacciFac == null){
+                    const fibonacci = Generator.fibonacciSeq;
+                    const sequence = Generator.generator(fibonacci);
+                    this.setState({
+                        fibonacciFac: sequence,
+                        fibonacci: [...this.state.fibonacci, sequence.next()]
+                    });
+                } else{
+                    const nextSequenceVal = this.state.fibonacciFac.next();
+                    this.setState({
+                        fibonacci: [...this.state.fibonacci, nextSequenceVal]
+                    });
+                }
+                break;
+            default:
                 break;
         }
 
@@ -52,6 +71,13 @@ class Sequencer extends Component {
 
                 <div className="col-md-2" >
                     <button id="fibonacci" onClick={ this.handleClick } > Fibonacci </button>
+                    <ul className="fibonacci-list">
+                        {
+                            this.state.fibonacci.map(function(value) {
+                                return <li key={value}>{value}</li>
+                            })
+                        }
+                    </ul>
                 </div>
 
                 <div className="col-md-2" id="range" onClick={this.handleClick}>
