@@ -65,6 +65,12 @@ describe('Generator.js', ()  => {
         expect(pipedValue).toEqual(15);
     });
 
+    it('decide if a number is even', () => {
+        const ie = Generator.isEven();
+        const response = ie(4);
+        expect(response).toEqual({status: true, number: 4 });
+    });
+
 
 
 });
